@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using VSComMariaDB.Model;
 
@@ -10,9 +11,11 @@ using VSComMariaDB.Model;
 namespace VSComMariaDB.Migrations
 {
     [DbContext(typeof(_DbContext))]
-    partial class _DbContextModelSnapshot : ModelSnapshot
+    [Migration("20240214224606_NovaTabelaProduto")]
+    partial class NovaTabelaProduto
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -48,14 +51,17 @@ namespace VSComMariaDB.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<string>("Descricao")
+                    b.Property<string>("Descricacao")
+                        .IsRequired()
                         .HasMaxLength(1000)
                         .HasColumnType("varchar(1000)");
 
                     b.Property<bool>("Disponivel")
+                        .HasPrecision(10, 2)
                         .HasColumnType("tinyint(1)");
 
                     b.Property<string>("Imagem")
+                        .IsRequired()
                         .HasMaxLength(5000)
                         .HasColumnType("varchar(5000)");
 
@@ -68,8 +74,7 @@ namespace VSComMariaDB.Migrations
                         .HasColumnType("tinyint(1)");
 
                     b.Property<decimal>("Preco")
-                        .HasPrecision(10, 2)
-                        .HasColumnType("decimal(10,2)");
+                        .HasColumnType("decimal(65,30)");
 
                     b.HasKey("Id");
 
