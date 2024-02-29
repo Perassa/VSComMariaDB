@@ -18,7 +18,10 @@ namespace VSComMariaDB.Model
         [Precision(10, 2)]
         public Decimal Preco { get; set; }
 
-        
+        [Precision(10, 2)]
+        public Decimal PrecoPromocional { get; set; }
+
+
 
         public bool Disponivel  { get; set; }
 
